@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora de Intereses — Anualidades</title>
+  <link rel="icon" href="../img/Icon.ico" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <!-- KaTeX for math formulas -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="../styles/styles.css" />
+</head>
+<body>
+
+  <!-- ── Navbar ─────────────────────────────────────────────── -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="../index.html">Calculadora de Intereses</a>
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#navMenu"
+              aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto gap-lg-2">
+          <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="interes-compuesto.html">Interés Compuesto</a></li>
+          <li class="nav-item"><a class="nav-link" href="tasas.html">Tasas</a></li>
+          <li class="nav-item"><a class="nav-link active" href="anualidades.html">Anualidades</a></li>
+          <li class="nav-item"><a class="nav-link" href="credito.html">Crédito</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── Page header ────────────────────────────────────────── -->
+  <div class="page-header">
+    <div class="container">
+      <h2>Anualidades</h2>
+      <span class="formula-badge">$$VP = A \cdot \left[\frac{1 - (1+i)^{-n}}{i}\right]$$</span>
+      <p class="mt-2 mb-0 opacity-75 small">
+        Calcula el valor presente de series uniformes de pagos periódicos.
+      </p>
+    </div>
+  </div>
+
+  <!-- ── Main ───────────────────────────────────────────────── -->
+  <main class="container py-4">
+
+    <!-- Bootstrap Tabs -->
+    <ul class="nav nav-tabs" id="anualidadesTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-av" type="button" role="tab">
+          Vencida
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-aa" type="button" role="tab">
+          Anticipada
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-ad" type="button" role="tab">
+          Diferida
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-ap" type="button" role="tab">
+          Perpetuidad
+        </button>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+
+      <!-- ═══ Tab Vencida ══════════════════════════════════════ -->
+      <div class="tab-pane fade show active" id="tab-av" role="tabpanel">
+        <div class="row g-4 mt-0">
+          <div class="col-lg-5">
+            <h6 class="text-uppercase text-muted fw-bold mb-3" style="letter-spacing:.08em">Anualidad Vencida</h6>
+            <p class="text-muted small">Los pagos se realizan al <strong>final</strong> de cada período.</p>
+
+            <div class="mb-3">
+              <label class="form-label" for="A-v">A — Cuota / Pago</label>
+              <input type="number" id="A-v" class="form-control" placeholder="Valor de cada pago" step="any" min="0" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="iA-v">i — Tasa por período (%)</label>
+              <input type="number" id="iA-v" class="form-control" placeholder="Ej: 1.5" step="any" min="0.000001" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="nA-v">n — Número de períodos</label>
+              <input type="number" id="nA-v" class="form-control" placeholder="Ej: 24" step="any" min="1" />
+            </div>
+
+            <div class="d-flex gap-2">
+              <button id="calc-av" class="btn btn-primary flex-grow-1">
+                <i class="bi bi-calculator me-2"></i>Calcular VP
+              </button>
+              <button id="reset-av" class="btn btn-outline-secondary" type="button" title="Limpiar">
+                <i class="bi bi-trash3 me-1"></i>Limpiar
+              </button>
+            </div>
+            <div id="result-v" class="mt-3"></div>
+          </div>
+          <div class="col-lg-7">
+            <h6 class="text-uppercase text-muted fw-bold mb-3" style="letter-spacing:.08em">Procedimiento</h6>
+            <div id="steps-v"></div>
+            <div class="chart-box mt-3" id="chart-box-v" style="display:none">
+              <h6><i class="bi bi-bar-chart me-2"></i>Línea de tiempo de pagos</h6>
+              <canvas id="chart-v" height="220"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ Tab Anticipada ═══════════════════════════════════ -->
+      <div class="tab-pane fade" id="tab-aa" role="tabpanel">
+        <div class="row g-4 mt-0">
+          <div class="col-lg-5">
+            <h6 class="text-uppercase text-muted fw-bold mb-3" style="letter-spacing:.08em">Anualidad Anticipada</h6>
+            <p class="text-muted small">Los pagos se realizan al <strong>inicio</strong> de cada período.</p>
+
+            <div class="mb-3">
+              <label class="form-label" for="A-a">A — Cuota / Pago</label>
+              <input type="number" id="A-a" class="form-control" placeholder="Valor de cada pago" step="any" min="0" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="iA-a">i — Tasa por período (%)</label>
+              <input type="number" id="iA-a" class="form-control" placeholder="Ej: 1.5" step="any" min="0.000001" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="nA-a">n — Número de períodos</label>
+              <input type="number" id="nA-a" class="form-control" placeholder="Ej: 24" step="any" min="1" />
+            </div>
+
+            <div class="d-flex gap-2">
+              <button id="calc-aa" class="btn btn-primary flex-grow-1">
+                <i class="bi bi-calculator me-2"></i>Calcular VP
+              </button>
+              <button id="reset-aa" class="btn btn-outline-secondary" type="button" title="Limpiar">
+                <i class="bi bi-trash3 me-1"></i>Limpiar
+              </button>
+            </div>
+            <div id="result-a" class="mt-3"></div>
+          </div>
+          <div class="col-lg-7">
+            <h6 class="text-uppercase text-muted fw-bold mb-3" style="letter-spacing:.08em">Procedimiento</h6>
+            <div id="steps-a"></div>
+            <div class="chart-box mt-3" id="chart-box-a" style="display:none">
+              <h6><i class="bi bi-bar-chart me-2"></i>Línea de tiempo de pagos</h6>
+              <canvas id="chart-a" height="220"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ Tab Diferida ══════════════════════════════════════ -->
+      <div class="tab-pane fade" id="tab-ad" role="tabpanel">
+        <div class="row g-4 mt-0">
+          <div class="col-lg-5">
+            <h6 class="text-uppercase text-muted fw-bold mb-3" style="letter-spacing:.08em">Anualidad Diferida</h6>
+            <p class="text-muted small">Los pagos comienzan después de <strong>k períodos de gracia</strong>.</p>
+
+            <div class="mb-3">
+              <label class="form-label" for="A-d">A — Cuota / Pago</label>
+              <input type="number" id="A-d" class="form-control" placeholder="Valor de cada pago" step="any" min="0" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="iA-d">i — Tasa por período (%)</label>
+              <input type="number" id="iA-d" class="form-control" placeholder="Ej: 1.5" step="any" min="0.000001" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="nA-d">n — Número de períodos</label>
+              <input type="number" id="nA-d" class="form-control" placeholder="Ej: 24" step="any" min="1" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="kA-d">k — Períodos de gracia (diferimiento)</label>
+              <input type="number" id="kA-d" class="form-control" placeholder="Ej: 3" step="any" min="0" />
+            </div>
+
+            <div class="d-flex gap-2">
+              <button id="calc-ad" class="btn btn-primary flex-grow-1">
+                <i class="bi bi-calculator me-2"></i>Calcular VP
+              </button>
+              <button id="reset-ad" class="btn btn-outline-secondary" type="button" title="Limpiar">
+                <i class="bi bi-trash3 me-1"></i>Limpiar
+              </button>
+            </div>
+            <div id="result-d" class="mt-3"></div>
+          </div>
+          <div class="col-lg-7">
+            <h6 class="text-uppercase text-muted fw-bold mb-3" style="letter-spacing:.08em">Procedimiento</h6>
+            <div id="steps-d"></div>
+            <div class="chart-box mt-3" id="chart-box-d" style="display:none">
+              <h6><i class="bi bi-bar-chart me-2"></i>Línea de tiempo de pagos</h6>
+              <canvas id="chart-d" height="220"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ Tab Perpetuidad ════════════════════════════════════ -->
+      <div class="tab-pane fade" id="tab-ap" role="tabpanel">
+        <div class="row g-4 mt-0">
+          <div class="col-lg-5">
+            <h6 class="text-uppercase text-muted fw-bold mb-3" style="letter-spacing:.08em">Perpetuidad</h6>
+            <p class="text-muted small">Serie de pagos que se extienden <strong>indefinidamente</strong>.</p>
+
+            <div class="mb-3">
+              <label class="form-label" for="A-p">A — Cuota / Pago</label>
+              <input type="number" id="A-p" class="form-control" placeholder="Valor de cada pago" step="any" min="0" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="iA-p">i — Tasa por período (%)</label>
+              <input type="number" id="iA-p" class="form-control" placeholder="Ej: 1.5" step="any" min="0.000001" />
+            </div>
+
+            <div class="d-flex gap-2">
+              <button id="calc-ap" class="btn btn-primary flex-grow-1">
+                <i class="bi bi-calculator me-2"></i>Calcular VP
+              </button>
+              <button id="reset-ap" class="btn btn-outline-secondary" type="button" title="Limpiar">
+                <i class="bi bi-trash3 me-1"></i>Limpiar
+              </button>
+            </div>
+            <div id="result-p" class="mt-3"></div>
+          </div>
+          <div class="col-lg-7">
+            <h6 class="text-uppercase text-muted fw-bold mb-3" style="letter-spacing:.08em">Procedimiento</h6>
+            <div id="steps-p"></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /tab-content -->
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────────────── -->
+  <footer>
+    Ingeniería Económica — Universidad Distrital &nbsp;|&nbsp; Calculadora de Intereses v1.0
+  </footer>
+
+  <script src="../js/core.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script src="../js/anualidades.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>document.addEventListener('DOMContentLoaded', applyInputGuards);</script>
+</body>
+</html>
+

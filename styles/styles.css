@@ -1,0 +1,349 @@
+/* ============================================================
+   Calculadora de Intereses — Main Stylesheet
+   Color theme: deep blue #1a3a5c | teal #0d9488 | bg #f1f5f9
+   ============================================================ */
+
+:root {
+  --primary: #1a3a5c;
+  --accent: #0d9488;
+  --bg: #f1f5f9;
+  --card-bg: #ffffff;
+  --muted: #64748b;
+  --text: #1e293b;
+  --border: #e2e8f0;
+  --shadow: 0 2px 12px rgba(26, 58, 92, 0.1);
+}
+
+/* ── Base ─────────────────────────────────────────────────── */
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family:
+    "Segoe UI",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+/* ── Navbar ───────────────────────────────────────────────── */
+.navbar {
+  background-color: var(--primary) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.35rem;
+  letter-spacing: 0.5px;
+  color: #fff !important;
+}
+
+.navbar-brand span {
+  color: #5eead4;
+}
+
+.navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: #5eead4 !important;
+}
+
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.navbar-toggler-icon {
+  filter: invert(1);
+}
+
+/* ── Footer ───────────────────────────────────────────────── */
+footer {
+  background-color: var(--primary);
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.85rem;
+  padding: 0.9rem 1rem;
+  text-align: center;
+  margin-top: auto;
+}
+
+/* ── Hero (home) ──────────────────────────────────────────── */
+.hero {
+  background: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    #1e5080 60%,
+    #0d9488 100%
+  );
+  color: #fff;
+  padding: 3.5rem 1rem 2.5rem;
+  text-align: center;
+}
+
+.hero h1 {
+  font-weight: 800;
+  font-size: 2.4rem;
+}
+.hero p {
+  opacity: 0.88;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0.5rem auto 0;
+}
+
+/* ── Module cards (home) ──────────────────────────────────── */
+.module-card {
+  border: none;
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  transition:
+    transform 0.22s,
+    box-shadow 0.22s;
+  height: 100%;
+}
+
+.module-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(26, 58, 92, 0.18);
+}
+
+.module-card .card-body {
+  padding: 1.6rem;
+}
+
+.module-card .icon {
+  font-size: 2.4rem;
+  line-height: 1;
+  margin-bottom: 0.6rem;
+}
+
+.module-card .card-title {
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 1.1rem;
+}
+
+.module-card .card-text {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #15314f;
+  border-color: #15314f;
+}
+
+.btn-accent {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.btn-accent:hover {
+  background-color: #0b7e73;
+  border-color: #0b7e73;
+  color: #fff;
+}
+
+/* ── Page header ──────────────────────────────────────────── */
+.page-header {
+  background: linear-gradient(90deg, var(--primary) 0%, #1e5080 100%);
+  color: #fff;
+  padding: 1.6rem 1rem 1.2rem;
+}
+
+.page-header h2 {
+  font-weight: 700;
+  font-size: 1.6rem;
+  margin-bottom: 0.3rem;
+}
+
+.formula-badge {
+  background-color: rgba(255, 255, 255, 0.18);
+  color: #c7f9f4;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-family: "Courier New", monospace;
+  font-size: 0.85rem;
+  padding: 0.2rem 0.7rem;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+/* ── Cards / panels ───────────────────────────────────────── */
+.calc-card {
+  background: var(--card-bg);
+  border: none;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 1.6rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ── Result boxes ─────────────────────────────────────────── */
+#result,
+[id^="result-"] {
+  font-weight: 600;
+  font-size: 1.05rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-top: 0.8rem;
+  min-height: 2.6rem;
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  color: var(--primary);
+  transition: background 0.3s;
+}
+
+#result.success {
+  background: #ecfdf5;
+  border-color: #6ee7b7;
+  color: #065f46;
+}
+#result.error {
+  background: #fef2f2;
+  border-color: #fca5a5;
+  color: #991b1b;
+}
+
+/* Steps */
+#steps,
+[id^="steps-"] {
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  margin-top: 0.8rem;
+  font-family: "Courier New", monospace;
+  font-size: 0.88rem;
+  line-height: 1.8;
+  color: #0c4a6e;
+  display: none;
+}
+
+#steps.show,
+[id^="steps-"].show {
+  display: block;
+}
+
+/* ── Tabs ─────────────────────────────────────────────────── */
+.nav-tabs .nav-link {
+  color: var(--muted);
+  font-weight: 500;
+  border-radius: 8px 8px 0 0;
+}
+
+.nav-tabs .nav-link.active {
+  color: var(--primary);
+  font-weight: 700;
+  border-bottom-color: #fff;
+}
+
+.tab-content {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  padding: 1.6rem;
+}
+
+/* ── Tables ───────────────────────────────────────────────── */
+.table-sm th {
+  background-color: var(--primary);
+  color: #fff;
+}
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #f8fafc;
+}
+.table-hover tbody tr:hover {
+  background-color: #e0f2fe !important;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 8px;
+}
+
+/* ── Form ─────────────────────────────────────────────────── */
+.form-label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+.form-control,
+.form-select {
+  border-color: var(--border);
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 0.2rem rgba(13, 148, 136, 0.2);
+}
+
+.form-text {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+/* ── Chart container ──────────────────────────────────────── */
+.chart-box {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem;
+  margin-top: 1.2rem;
+}
+
+.chart-box h6 {
+  color: var(--primary);
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+}
+
+/* ── Flow rows (Ecuación de valor) ────────────────────────── */
+.flow-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.flow-row input,
+.flow-row select {
+  flex: 1;
+  min-width: 100px;
+}
+
+.flow-row .btn-remove {
+  flex: 0 0 auto;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.8rem;
+}
+
+/* ── Responsive tweaks ────────────────────────────────────── */
+@media (max-width: 576px) {
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+  .page-header h2 {
+    font-size: 1.3rem;
+  }
+}
