@@ -6,6 +6,21 @@
 (function () {
   var chartInstance = null;
 
+  function selectedPeriodLabel() {
+    var select = document.getElementById('periodo');
+    return select && select.value === 'años' ? 'años' : 'meses';
+  }
+
+  function selectedPeriodAdjective() {
+    var select = document.getElementById('periodo');
+    return select && select.value === 'años' ? 'anual' : 'mensual';
+  }
+
+  function updatePeriodLabel() {
+    var label = document.getElementById('label-n');
+    if (label) label.textContent = 'n — Número de ' + selectedPeriodLabel();
+  }
+
   function renderChart(periods, values) {
     var canvas = document.getElementById('chart-interes');
     if (!canvas) return;
@@ -40,7 +55,7 @@
           }
         },
         scales: {
-          x: { title: { display: true, text: (document.getElementById('periodo')?.value || 'meses').replace(/^./, function (c) { return c.toUpperCase(); }) } },
+          x: { title: { display: true, text: selectedPeriodLabel().charAt(0).toUpperCase() + selectedPeriodLabel().slice(1) } },
           y: {
             title: { display: true, text: 'Valor ($)' },
             ticks: { callback: function(v) { return '$' + fmt(v); } }
@@ -52,14 +67,20 @@
     document.getElementById('chart-interes-box').style.display = '';
   }
 
+  var periodSelect = document.getElementById('periodo');
+  if (periodSelect) {
+    periodSelect.addEventListener('change', updatePeriodLabel);
+    updatePeriodLabel();
+  }
+
   bindSimple('calc-interes', function () {
     hideSteps();
     var vpRaw = readRaw('vp');
     var vfRaw = readRaw('vf');
     var iRaw  = readRaw('i');
     var nRaw  = readRaw('n');
-    var periodUnit = document.getElementById('periodo') ? document.getElementById('periodo').value : 'meses';
-    var periodLabel = periodUnit === 'años' ? 'años' : 'meses';
+    var periodLabel = selectedPeriodLabel();
+    var periodAdjective = selectedPeriodAdjective();
     var filled = [vpRaw, vfRaw, iRaw, nRaw].filter(Boolean).length;
 
     if (filled !== 3)
@@ -139,12 +160,12 @@
       var res3 = p3 - 1;
       if (!isFiniteNumber(res3)) return fail('No se pudo calcular i con esos datos.');
 
-      ok('i = ' + fmt(res3 * 100, 6) + '% por ' + periodLabel);
+      ok('i = ' + fmt(res3 * 100, 6) + '% ' + periodAdjective);
       steps(
         '<strong>Fórmula:</strong> $$i = \\left(\\frac{F}{P}\\right)^{1/n} - 1$$' +
         'Sustituyendo: $$i = \\left(\\frac{' + fmt(VF) + '}{' + fmt(VP) + '}\\right)^{1/' + fmt(nVal,2) + '} - 1$$' +
         'Razón $F/P$: ' + fmt(ratio, 6) + '<br>' +
-        '<strong>i = ' + fmt(res3 * 100, 6) + '%</strong>'
+        '<strong>i = ' + fmt(res3 * 100, 6) + '% ' + periodAdjective + '</strong>'
       );
 
       var base3 = 1 + res3;
@@ -175,7 +196,7 @@
       'Sustituyendo: $$n = \\frac{\\ln(' + fmt(VF) + ' / ' + fmt(VP) + ')}{\\ln(1 + ' + fmt(iPct/100,6) + ')}$$' +
       '$\\ln(F/P) = ' + fmt(num, 6) + '$<br>' +
       '$\\ln(1+i) = ' + fmt(den, 6) + '$<br>' +
-      '<strong>n = ' + fmt(res4, 4) + ' períodos</strong>'
+      '<strong>n = ' + fmt(res4, 4) + ' ' + periodLabel + '</strong>'
     );
 
     var base4 = 1 + i;
@@ -197,6 +218,7 @@
     });
     var periodSelect = document.getElementById('periodo');
     if (periodSelect) periodSelect.value = 'meses';
+    updatePeriodLabel();
     var res = document.getElementById('result');
     if (res) {
       res.textContent = '';
