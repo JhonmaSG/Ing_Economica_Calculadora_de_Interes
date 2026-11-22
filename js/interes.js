@@ -40,7 +40,7 @@
           }
         },
         scales: {
-          x: { title: { display: true, text: 'Período' } },
+          x: { title: { display: true, text: (document.getElementById('periodo')?.value || 'meses').replace(/^./, function (c) { return c.toUpperCase(); }) } },
           y: {
             title: { display: true, text: 'Valor ($)' },
             ticks: { callback: function(v) { return '$' + fmt(v); } }
@@ -58,6 +58,8 @@
     var vfRaw = readRaw('vf');
     var iRaw  = readRaw('i');
     var nRaw  = readRaw('n');
+    var periodUnit = document.getElementById('periodo') ? document.getElementById('periodo').value : 'meses';
+    var periodLabel = periodUnit === 'años' ? 'años' : 'meses';
     var filled = [vpRaw, vfRaw, iRaw, nRaw].filter(Boolean).length;
 
     if (filled !== 3)
@@ -137,7 +139,7 @@
       var res3 = p3 - 1;
       if (!isFiniteNumber(res3)) return fail('No se pudo calcular i con esos datos.');
 
-      ok('i = ' + fmt(res3 * 100, 6) + '%');
+      ok('i = ' + fmt(res3 * 100, 6) + '% por ' + periodLabel);
       steps(
         '<strong>Fórmula:</strong> $$i = \\left(\\frac{F}{P}\\right)^{1/n} - 1$$' +
         'Sustituyendo: $$i = \\left(\\frac{' + fmt(VF) + '}{' + fmt(VP) + '}\\right)^{1/' + fmt(nVal,2) + '} - 1$$' +
@@ -167,7 +169,7 @@
     var res4 = num / den;
     if (!isFiniteNumber(res4) || res4 < 0) return fail('Resultado inválido para n.');
 
-    ok('n = ' + fmt(res4, 4) + ' períodos');
+    ok('n = ' + fmt(res4, 4) + ' ' + periodLabel);
     steps(
       '<strong>Fórmula:</strong> $$n = \\frac{\\ln(F/P)}{\\ln(1 + i)}$$' +
       'Sustituyendo: $$n = \\frac{\\ln(' + fmt(VF) + ' / ' + fmt(VP) + ')}{\\ln(1 + ' + fmt(iPct/100,6) + ')}$$' +
@@ -193,6 +195,8 @@
       var el = document.getElementById(id);
       if (el) el.value = '';
     });
+    var periodSelect = document.getElementById('periodo');
+    if (periodSelect) periodSelect.value = 'meses';
     var res = document.getElementById('result');
     if (res) {
       res.textContent = '';

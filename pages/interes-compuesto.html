@@ -72,6 +72,15 @@
           </div>
 
           <div class="mb-3">
+            <label class="form-label" for="periodo">Unidad del período</label>
+            <select id="periodo" class="form-select">
+              <option value="meses" selected>Meses</option>
+              <option value="años">Años</option>
+            </select>
+            <div class="form-text">La tasa y el número de períodos deben usar la misma unidad.</div>
+          </div>
+
+          <div class="mb-3">
             <label class="form-label" for="n">n — Número de períodos</label>
             <input type="number" id="n" class="form-control" placeholder="Ej: 12" step="any" min="1" />
           </div>
