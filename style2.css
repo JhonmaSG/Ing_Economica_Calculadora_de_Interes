@@ -305,6 +305,29 @@ footer {
     border-radius: 0 12px 12px 0
 }
 
+.flow-diagram {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 1rem;
+    overflow-x: auto;
+    box-shadow: var(--shadow)
+}
+.flow-svg { display: block; width: 100%; min-width: 680px; height: auto; font-family: 'Nunito Sans', sans-serif }
+.flow-title { fill: var(--ink); font-size: 20px; font-weight: 800 }
+.flow-axis { stroke: var(--ink); stroke-width: 2 }
+.flow-tick { stroke: var(--ink); stroke-width: 1.5 }
+.flow-period, .flow-period-label { fill: var(--muted); font-size: 13px }
+.flow-income { stroke: #62a87c; stroke-width: 3 }
+.flow-debt { stroke: #c94c58; stroke-width: 3 }
+.flow-income-text { fill: #438b5b }
+.flow-debt-text { fill: #b13d4a }
+.flow-amount { font-size: 14px; font-weight: 800 }
+.flow-kind { font-size: 12px; font-weight: 700 }
+.flow-focal { stroke: #5e239d; stroke-width: 2.5; stroke-dasharray: 7 5 }
+.flow-focal-box { fill: #f0e9ff; stroke: #5e239d; stroke-width: 1.5 }
+.flow-focal-text { fill: #5e239d; font-size: 12px; font-weight: 800 }
+
 .chart-box {
     border-top: 1px solid var(--line);
     padding-top: 1rem
