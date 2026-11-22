@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,42 +10,77 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style2.css" />
 </head>
-<body>
-  <nav class="navbar navbar-expand-lg navbar-dark"><div class="container">
-    <a class="navbar-brand" href="index.html">Ingeniería Económica</a>
-    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-label="Abrir menú"><span class="navbar-toggler-icon"></span></button>
-    <div class="collapse navbar-collapse" id="navMenu"><ul class="navbar-nav ms-auto gap-lg-2">
-      <li><a class="nav-link active" href="index.html">Inicio</a></li>
-      <li><a class="nav-link" href="pages/interes-compuesto.html">Interés compuesto</a></li>
-      <li><a class="nav-link" href="pages/tasas.html">Equivalencia de tasas</a></li>
-      <li><a class="nav-link" href="pages/anualidades.html">Anualidades</a></li>
-      <li><a class="nav-link" href="pages/ecuacion-valor.html">Ecuación de valor</a></li>
-      <li><a class="nav-link" href="pages/credito.html">Amortización</a></li>
-    </ul></div>
-  </div></nav>
 
-  <header class="hero"><div class="container">
-    <span class="eyebrow">Herramienta de estudio | Proyecto de Ing. Económica</span>
-    <h1>Calculadora de Intereses</h1>
-    <p>Resuelve intereses, tasas, anualidades, ecuaciones de valor y amortización con fórmulas y procedimiento.</p>
-    <a class="btn btn-light btn-lg" href="#modulos">Explorar módulos <i class="bi bi-arrow-down ms-2"></i></a>
-  </div></header>
+<body>
+  <iframe class="nav-frame" src="pages/templates/nav.html" title="Navegación principal" scrolling="no"
+    ></iframe><script>window.addEventListener("message",function(event){if(!event.data||event.data.type!=="nav-toggle")return;var frame=document.querySelector(".nav-frame");if(frame)frame.style.height=event.data.open?"300px":"72px";});</script>
+
+  <header class="hero">
+    <div class="container">
+      <span class="eyebrow">Herramienta de estudio | Proyecto de Ing. Económica</span>
+      <h1>Calculadora de Intereses</h1>
+      <p>Resuelve intereses, tasas, anualidades, ecuaciones de valor y amortización con fórmulas y procedimiento.</p>
+      <a class="btn btn-light btn-lg" href="#modulos">Explorar módulos <i class="bi bi-arrow-down ms-2"></i></a>
+    </div>
+  </header>
 
   <main class="container py-5" id="modulos">
-    <div class="section-heading"><span class="eyebrow">Contenido de la calculadora</span><h2>Cinco módulos, un mismo lenguaje financiero</h2><p>Los temas relacionados están agrupados para evitar duplicaciones y facilitar el aprendizaje.</p></div>
-    <div class="row g-4">
-      <div class="col-md-6 col-lg-4"><article class="module-card"><h3>Interés compuesto</h3><p>Calcula VP, VF, tasa o períodos a partir de la relación fundamental.</p><div class="formula">$VF=VP(1+i)^n$</div><a href="pages/interes-compuesto.html" class="btn btn-primary">Abrir módulo</a></article></div>
-      <div class="col-md-6 col-lg-4"><article class="module-card"><h3>Equivalencia de tasas</h3><p>Convierte tasas nominales, efectivas, vencidas y anticipadas entre períodos.</p><div class="formula">$EA=(1+i)^m-1$</div><a href="pages/tasas.html" class="btn btn-primary">Abrir módulo</a></article></div>
-      <div class="col-md-6 col-lg-4"><article class="module-card"><h3>Anualidades</h3><p>Resuelve anualidades vencidas, anticipadas, diferidas y generales para VP o VF.</p><div class="formula">$VP=A\frac{1-(1+i)^{-n}}{i}$</div><a href="pages/anualidades.html" class="btn btn-primary">Abrir módulo</a></article></div>
-      <div class="col-md-6 col-lg-6"><article class="module-card"><h3>Ecuación de valor</h3><p>Lleva ingresos, pagos y deudas a una fecha focal para comparar flujos económicos.</p><div class="formula">$V_f=V_t(1+i)^{f-t}$</div><a href="pages/ecuacion-valor.html" class="btn btn-primary">Abrir módulo</a></article></div>
-      <div class="col-md-6 col-lg-6"><article class="module-card"><h3>Amortización</h3><p>Calcula la cuota y genera tablas de amortización con sistemas francés y alemán.</p><div class="formula">$A=\frac{VP\,i}{1-(1+i)^{-n}}$</div><a href="pages/credito.html" class="btn btn-primary">Abrir módulo</a></article></div>
+    <div class="section-heading">
+      <h2 >Contenido de la calculadora</h2>
+      <p>Los temas relacionados están agrupados para evitar duplicaciones y facilitar el aprendizaje.</p>
     </div>
-    <div class="learning-note mt-5"><div><strong>A tener en cuenta</strong><br>Ingresa valores con punto decimal. Revisa siempre la unidad de la tasa y el período de cada flujo antes de interpretar el resultado.</div></div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        <article class="module-card clickable-card" data-href="pages/interes-compuesto.html" tabindex="0" role="link"
+          aria-label="Abrir módulo de interés compuesto">
+          <h3>Interés compuesto</h3>
+          <p>Calcula VP, VF, tasa o períodos a partir de la relación fundamental.</p>
+          <div class="formula">$VF=VP(1+i)^n$</div>
+        </article>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <article class="module-card clickable-card" data-href="pages/tasas.html" tabindex="0" role="link"
+          aria-label="Abrir módulo de equivalencia de tasas">
+          <h3>Equivalencia de tasas</h3>
+          <p>Convierte tasas nominales, efectivas, vencidas y anticipadas entre períodos.</p>
+          <div class="formula">$EA=(1+i)^m-1$</div>
+        </article>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <article class="module-card clickable-card" data-href="pages/anualidades.html" tabindex="0" role="link"
+          aria-label="Abrir módulo de anualidades">
+          <h3>Anualidades</h3>
+          <p>Resuelve anualidades vencidas, anticipadas, diferidas y generales para VP o VF.</p>
+          <div class="formula">$VP=A\frac{1-(1+i)^{-n}}{i}$</div>
+        </article>
+      </div>
+      <div class="col-md-6 col-lg-6">
+        <article class="module-card clickable-card" data-href="pages/ecuacion-valor.html" tabindex="0" role="link"
+          aria-label="Abrir módulo de ecuación de valor">
+          <h3>Ecuación de valor</h3>
+          <p>Lleva ingresos, pagos y deudas a una fecha focal para comparar flujos económicos.</p>
+          <div class="formula">$V_f=V_t(1+i)^{f-t}$</div>
+        </article>
+      </div>
+      <div class="col-md-6 col-lg-6">
+        <article class="module-card clickable-card" data-href="pages/credito.html" tabindex="0" role="link"
+          aria-label="Abrir módulo de amortización">
+          <h3>Amortización</h3>
+          <p>Calcula la cuota y genera tablas de amortización con sistemas francés y alemán.</p>
+          <div class="formula">$A=\frac{VP\,i}{1-(1+i)^{-n}}$</div>
+        </article>
+      </div>
+    </div>
+    <div class="learning-note mt-5">
+      <div><strong>A tener en cuenta</strong><br>Ingresa valores con punto decimal. Revisa siempre la unidad de la tasa
+        y el período de cada flujo antes de interpretar el resultado.</div>
+    </div>
   </main>
-  <iframe class="footer-frame" src="pages/footer.html" title="Pie de página" scrolling="no"></iframe>
+  <iframe class="footer-frame" src="pages/templates/footer.html" title="Pie de página" scrolling="no"></iframe>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="script.js"></script>
 </body>
+
 </html>

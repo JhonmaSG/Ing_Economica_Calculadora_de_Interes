@@ -10,28 +10,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../style2.css">
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container"><a class="navbar-brand" href="../index.html">Ingeniería Económica</a><button
-                class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav"><span
-                    class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="nav">
-                <ul class="navbar-nav ms-auto">
-                    <li><a class="nav-link" href="../index.html">Inicio</a></li>
-                    <li><a class="nav-link" href="interes-compuesto.html">Interés compuesto</a></li>
-                    <li><a class="nav-link" href="tasas.html">Tasas</a></li>
-                    <li><a class="nav-link" href="anualidades.html">Anualidades</a></li>
-                    <li><a class="nav-link active" href="ecuacion-valor.html">Ecuación de valor</a></li>
-                    <li><a class="nav-link" href="credito.html">Amortización</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <iframe class="nav-frame" src="templates/nav.html" title="Navegación principal" scrolling="no" ></iframe><script>window.addEventListener("message",function(event){if(!event.data||event.data.type!=="nav-toggle")return;var frame=document.querySelector(".nav-frame");if(frame)frame.style.height=event.data.open?"300px":"72px";});</script>
     <header class="page-header">
-        <div class="container"><span class="eyebrow">Módulo 4</span>
+        <div class="container">
             <h2>Ecuación de valor</h2>
             <p class="mb-0">Compara ingresos, pagos y deudas en una fecha focal común.</p>
         </div>
@@ -71,7 +56,7 @@
                 </div>
             </section>
         </div>
-    </main><iframe class="footer-frame" src="footer.html" title="Pie de página" scrolling="no"></iframe>
+    </main><iframe class="footer-frame" src="templates/footer.html" title="Pie de página" scrolling="no"></iframe>
     <script src="../js/core.js"></script>
     <script src="../js/ecuacion.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

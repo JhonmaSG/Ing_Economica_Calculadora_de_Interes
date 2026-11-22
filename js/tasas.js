@@ -8,9 +8,7 @@
 
   function buildSigla(mod, mom, per) {
     var pLetter = {
-      Diaria: 'D',
       Semanal: 'S',
-      Quincenal: 'Q',
       Mensual: 'M',
       Bimestral: 'B',
       Trimestral: 'T',

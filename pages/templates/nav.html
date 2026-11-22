@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: auto;
+      min-height: 72px !important;
+      margin: 0;
+      padding: 0;
+      overflow: visible;
+      background: rgba(50, 50, 44, .97);
+    }
+
+    .navbar {
+      min-height: 72px;
+      background: rgba(50, 50, 44, .97);
+      padding: 0;
+      box-shadow: 0 5px 20px rgba(50, 50, 44, .2);
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar-brand,
+    .navbar .nav-link {
+      font-weight: 700;
+    }
+
+    .navbar-brand {
+      letter-spacing: -.02em;
+    }
+
+    .navbar .nav-link {
+      color: #e8f4eb;
+      transition: color .2s ease;
+    }
+
+    .navbar .nav-link:hover,
+    .navbar .nav-link.active {
+      color: #62a87c;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="../../index.html" target="_top">Ingeniería Económica</a>
+      <button id="navToggle" class="navbar-toggler" type="button" aria-controls="navMenu"
+        aria-expanded="false" aria-label="Abrir menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto gap-lg-2">
+          <li><a class="nav-link" href="../../index.html" target="_top">Inicio</a></li>
+          <li><a class="nav-link" href="../interes-compuesto.html" target="_top">Interés compuesto</a></li>
+          <li><a class="nav-link" href="../tasas.html" target="_top">Equivalencia de tasas</a></li>
+          <li><a class="nav-link" href="../anualidades.html" target="_top">Anualidades</a></li>
+          <li><a class="nav-link" href="../ecuacion-valor.html" target="_top">Ecuación de valor</a></li>
+          <li><a class="nav-link" href="../credito.html" target="_top">Amortización</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    var collapseMenu = document.getElementById('navMenu');
+    var navToggle = document.getElementById('navToggle');
+    var menuController = collapseMenu ? new bootstrap.Collapse(collapseMenu, { toggle: false }) : null;
+    var expandDelay = 280;
+
+    if (collapseMenu && navToggle && menuController) {
+      navToggle.addEventListener('click', function () {
+        var isOpen = collapseMenu.classList.contains('show');
+        if (isOpen) {
+          menuController.hide();
+          navToggle.setAttribute('aria-expanded', 'false');
+          return;
+        }
+
+        /* Primero crece el iframe; después aparece el menú. */
+        window.parent.postMessage({ type: 'nav-toggle', open: true }, '*');
+        navToggle.setAttribute('aria-expanded', 'true');
+        window.setTimeout(function () {
+          menuController.show();
+        }, expandDelay);
+      });
+
+      collapseMenu.addEventListener('hidden.bs.collapse', function () {
+        window.parent.postMessage({ type: 'nav-toggle', open: false }, '*');
+      });
+    }
+  </script>
+</body>
+
+</html>

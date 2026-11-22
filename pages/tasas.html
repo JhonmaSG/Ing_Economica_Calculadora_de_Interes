@@ -26,49 +26,11 @@
       defer
       src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
     ></script>
-    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../style2.css" />
   </head>
   <body>
     <!-- ── Navbar ─────────────────────────────────────────────── -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-      <div class="container">
-        <a class="navbar-brand" href="../index.html"
-          >Calculadora de Intereses</a
-        >
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navMenu"
-          aria-controls="navMenu"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navMenu">
-          <ul class="navbar-nav ms-auto gap-lg-2">
-            <li class="nav-item">
-              <a class="nav-link" href="../index.html">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="interes-compuesto.html"
-                >Interés Compuesto</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="tasas.html">Tasas</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="anualidades.html">Anualidades</a>
-            </li>
-            <li><a class="nav-link" href="ecuacion-valor.html">Ecuación de valor</a></li><li class="nav-item">
-              <a class="nav-link" href="credito.html">Amortización</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <iframe class="nav-frame" src="templates/nav.html" title="Navegación principal" scrolling="no" ></iframe><script>window.addEventListener("message",function(event){if(!event.data||event.data.type!=="nav-toggle")return;var frame=document.querySelector(".nav-frame");if(frame)frame.style.height=event.data.open?"300px":"72px";});</script>
 
     <!-- ── Page header ────────────────────────────────────────── -->
     <div class="page-header">
@@ -159,8 +121,6 @@
                   <option value="Cuatrimestral">Cuatrimestral (m = 3)</option>
                   <option value="Semestral">Semestral (m = 2)</option>
                   <option value="Anual" selected>Anual (m = 1)</option>
-                  <option value="Quincenal">Quincenal (m = 24)</option>
-                  <option value="Diaria">Diaria (m = 360)</option>
                 </select>
               </div>
             </div>
@@ -221,8 +181,6 @@
                   <option value="Cuatrimestral">Cuatrimestral (m = 3)</option>
                   <option value="Semestral">Semestral (m = 2)</option>
                   <option value="Anual">Anual (m = 1)</option>
-                  <option value="Quincenal">Quincenal (m = 24)</option>
-                  <option value="Diaria">Diaria (m = 360)</option>
                 </select>
               </div>
             </div>
@@ -313,7 +271,7 @@
     </main>
 
     <!-- ── Footer ─────────────────────────────────────────────── -->
-    <iframe class="footer-frame" src="footer.html" title="Pie de página" scrolling="no"></iframe>
+    <iframe class="footer-frame" src="templates/footer.html" title="Pie de página" scrolling="no"></iframe>
 
     <script src="../js/core.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>

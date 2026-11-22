@@ -1,0 +1,355 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
+
+:root {
+    --ink: #32322c;
+    --muted: #64756d;
+    --navy: #32322c;
+    --teal: #5e239d;
+    --mint: #e8f3ea;
+    --aquamarine: #15c6d3;
+    --surface: #fcfffc;
+    --line: #d8e6dc;
+    --shadow: 0 16px 38px rgba(50, 50, 44, .12)
+}
+
+* {
+    box-sizing: border-box
+}
+
+html,
+body {
+    min-height: 100%
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    background: #fbfaff;
+    color: var(--ink);
+    font-family: 'Nunito Sans', sans-serif;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column
+}
+
+main {
+    flex: 1;
+    width: 100%
+}
+
+.navbar {
+    background: rgba(50, 50, 44, .97);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    box-shadow: 0 5px 20px rgba(50, 50, 44, .2)
+}
+
+.navbar-brand,
+.navbar .nav-link {
+    font-weight: 700
+}
+
+.navbar-brand {
+    letter-spacing: -.02em
+}
+
+.navbar .nav-link {
+    color: #e8f4eb;
+    transition: color .2s ease
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+    color: var(--aquamarine)
+}
+
+.hero {
+    background: radial-gradient(circle at 85% 20%, rgba(98, 168, 124, .35), transparent 25%), linear-gradient(135deg, #32322c 0%, #247ba0 58%, #6a07d4 100%);
+    color: #fff;
+    padding: 6.5rem 0 6rem;
+    position: relative;
+    overflow: hidden
+}
+
+.hero:after {
+    content: '';
+    position: absolute;
+    width: 430px;
+    height: 430px;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 42% 58% 65% 35%;
+    right: -130px;
+    bottom: -240px;
+    transform: rotate(25deg)
+}
+
+.hero h1 {
+    font: 800 clamp(2.3rem, 5vw, 4.4rem)/1.03 'Plus Jakarta Sans', sans-serif;
+    max-width: 760px;
+    margin: .7rem 0 1rem;
+    letter-spacing: -.06em
+}
+
+.hero p {
+    font-size: 1.15rem;
+    max-width: 650px;
+    color: #eaf5ef;
+    margin-bottom: 1.8rem
+}
+
+.eyebrow {
+    text-transform: uppercase;
+    letter-spacing: .16em;
+    font-size: .72rem;
+    font-weight: 800;
+    color: var(--teal)
+}
+
+.hero .eyebrow {
+    color: var(--aquamarine)
+}
+
+.section-heading {
+    max-width: 700px;
+    margin-bottom: 2rem
+}
+
+.section-heading h2 {
+    font: 800 clamp(1.8rem, 3vw, 2.7rem)/1.1 'Plus Jakarta Sans', sans-serif;
+    margin: .5rem 0
+}
+
+.section-heading p {
+    color: var(--muted)
+}
+
+.module-card {
+    height: 100%;
+    padding: 1.8rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease
+}
+
+.module-card:before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto;
+    height: 5px;
+    background: linear-gradient(90deg, var(--teal), var(--gold))
+}
+
+.clickable-card {
+    cursor: pointer
+}
+
+.clickable-card:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 4px
+}
+
+.module-card:hover {
+    transform: translateY(-9px);
+    border-color: #9cc4df;
+    box-shadow: 0 22px 45px rgba(94, 35, 157, .19)
+}
+
+.module-card h3 {
+    font: 800 1.35rem 'Plus Jakarta Sans', sans-serif;
+    margin: .9rem 0 .55rem
+}
+
+.module-card:hover h3 {
+    color: var(--teal)
+}
+
+.module-card p {
+    color: var(--muted);
+    flex: 1
+}
+
+.module-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 18px;
+    background: var(--mint);
+    color: var(--teal);
+    display: grid;
+    place-items: center;
+    font-size: 1.4rem;
+    transition: transform .25s ease, background .25s ease, color .25s ease
+}
+
+.module-card:hover .module-icon {
+    transform: rotate(-6deg) scale(1.08);
+    background: var(--teal);
+    color: #fff
+}
+
+.formula {
+    min-height: 2.2rem;
+    color: #5e239d;
+    background: #f5fbf7;
+    border: 1px dashed #b9d9c2;
+    border-radius: 12px;
+    padding: .6rem .8rem;
+    text-align: center;
+    margin: 1rem 0 1.2rem
+}
+
+.btn-primary {
+    background: var(--teal);
+    border-color: var(--teal);
+    border-radius: 10px;
+    font-weight: 700
+}
+
+.btn-primary:hover {
+    background: #247ba0;
+    border-color: #247ba0
+}
+
+.learning-note {
+    display: flex;
+    gap: 1rem;
+    background: #fff9ea;
+    border: 1px solid #f9d58b;
+    border-radius: 16px;
+    padding: 1rem 1.2rem;
+    color: #745316
+}
+
+.learning-note>i {
+    color: #d88900;
+    font-size: 1.35rem
+}
+
+footer {
+    background: var(--navy);
+    color: #e6f2e8;
+    text-align: center;
+    padding: 1.5rem;
+    font-size: .9rem
+}
+
+.page-header {
+    background: linear-gradient(135deg, var(--navy), #247ba0);
+    color: #fff;
+    padding: 3rem 0
+}
+
+.page-header h2 {
+    font: 800 2.2rem 'Plus Jakarta Sans', sans-serif
+}
+
+.formula-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, .14);
+    border: 1px solid rgba(255, 255, 255, .2);
+    padding: .5rem .9rem;
+    border-radius: 10px
+}
+
+.calc-card,
+.tab-content {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    padding: 1.6rem
+}
+
+.nav-tabs {
+    border-bottom-color: var(--line)
+}
+
+.nav-tabs .nav-link {
+    color: var(--muted);
+    font-weight: 700
+}
+
+.nav-tabs .nav-link.active {
+    color: var(--teal);
+    border-color: var(--line) var(--line) #fff
+}
+
+.success,
+.error {
+    padding: .85rem 1rem;
+    border-radius: 12px;
+    margin-top: 1rem
+}
+
+.success {
+    background: #eaf6ed;
+    color: #3e7d52
+}
+
+.error {
+    background: #fbefef;
+    color: #8f3b4b
+}
+
+.steps {
+    background: #f4faf6;
+    border-left: 5px solid var(--teal);
+    padding: 1rem 1.1rem;
+    border-radius: 0 12px 12px 0
+}
+
+.chart-box {
+    border-top: 1px solid var(--line);
+    padding-top: 1rem
+}
+
+.table-wrapper {
+    overflow-x: auto
+}
+
+.section-kicker {
+    font-size: .74rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--teal);
+    font-weight: 800
+}
+
+.nav-frame {
+    display: block;
+    width: 100%;
+    height: 72px;
+    border: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    background: var(--navy);
+    transition: height .28s ease-in-out
+}
+
+.footer-frame {
+    display: block;
+    width: 100%;
+    height: 72px;
+    border: 0;
+    margin: 0;
+    padding: 0
+}
+
+@media(max-width:576px) {
+    .hero {
+        padding: 4.5rem 0
+    }
+
+    .calc-card,
+    .tab-content {
+        padding: 1rem
+    }
+}
