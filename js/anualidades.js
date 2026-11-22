@@ -37,8 +37,36 @@
     if (!Number.isFinite(result)) return fail('Resultado fuera de rango.', 'result-anualidad');
     var label = target.toUpperCase() + ' de anualidad ' + (type === 'vencida' ? 'vencida' : type);
     ok(label + ' = <strong>$' + fmt(result) + '</strong>', 'result-anualidad');
-    explanation.unshift('<strong>Fórmula base:</strong> ' + (target === 'vp' ? '$$VP=A\\frac{1-(1+i)^{-n}}{i}$$' : '$$VF=A\\frac{(1+i)^n-1}{i}$$'));
-    explanation.push('<strong>Datos:</strong> A = $' + fmt(A) + ', i = ' + fmt(i * 100, 5) + '%, n = ' + n + '.');
+    var rateText = fmt(i * 100, 5) + '%';
+    var rateDecimalText = fmt(i, 8);
+    var factorFormula = target === 'vp'
+      ? 'A\\left[\\frac{1-(1+i)^{-n}}{i}\\right]'
+      : 'A\\left[\\frac{(1+i)^n-1}{i}\\right]';
+    if (type === 'anticipada') factorFormula += '\\,(1+i)';
+    if (type === 'diferida' && target === 'vp') factorFormula += '\\,/\\,(1+i)^k';
+    var factorValue = fmt(factor, 8);
+    var baseResult = A * factor;
+    explanation.unshift('<strong>1. Fórmula aplicable:</strong> $$' + (target === 'vp' ? 'VP=' : 'VF=') + factorFormula + '$$');
+    var substitution = target === 'vp'
+      ? 'VP=' + fmt(A) + '\\left[\\frac{1-(1+' + rateDecimalText + ')^{' + (-n) + '}}{' + rateDecimalText + '}\\right]'
+      : 'VF=' + fmt(A) + '\\left[\\frac{(1+' + rateDecimalText + ')^{' + n + '}-1}{' + rateDecimalText + '}\\right]';
+    if (type === 'anticipada') substitution += '\\,(1+' + rateDecimalText + ')';
+    if (type === 'diferida' && target === 'vp') substitution += '\\,/\\,(1+' + rateDecimalText + ')^{' + readRaw('kA') + '}';
+    explanation.push('<strong>2. Sustitución:</strong> $$' + substitution + '$$');
+    var factorExplanation = '<strong>3. Factor financiero:</strong> ' + (target === 'vp' ? 'P/A' : 'F/A') + ' = ' + factorValue;
+    if (type === 'anticipada' || (type === 'diferida' && target === 'vp')) {
+      factorExplanation += '<br>' + (target === 'vp' ? 'VP' : 'VF') + ' antes de ajustes = $' + fmt(baseResult);
+    }
+    explanation.push(factorExplanation);
+    if (type === 'anticipada') {
+      explanation.push('<strong>4. Ajuste por pago anticipado:</strong> se multiplica por (1+i) = ' + fmt(1 + i, 8) + '<br>Resultado intermedio = $' + fmt(baseResult * (1 + i)));
+    }
+    if (type === 'diferida' && target === 'vp') {
+      var grace = readRaw('kA');
+      explanation.push('<strong>5. Ajuste por diferimiento:</strong> se divide entre (1+i)<sup>k</sup>, con k = ' + grace + '<br>Resultado final = $' + fmt(result));
+    }
+    explanation.push('<strong>Datos de entrada:</strong> A = $' + fmt(A) + ', i = ' + rateText + ', n = ' + n + (type === 'diferida' ? ', k = ' + readRaw('kA') : '') + '.');
+    explanation.push('<strong>Resultado:</strong> ' + target.toUpperCase() + ' = $' + fmt(result));
     steps(explanation.join('<hr class="my-2">'), 'steps-anualidad');
     draw(n, A, type);
   }

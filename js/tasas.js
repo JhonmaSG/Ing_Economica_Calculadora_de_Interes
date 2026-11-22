@@ -110,7 +110,6 @@
     var currentDec = pct(tasaPct);
 
     stepsArr.push(
-      '<div class="mb-2"><span class="badge bg-primary me-2">Entrada</span>' +
       '<strong>' + fmt(tasaPct, 4) + '% ' + siglaIn + '</strong>' +
       ' (m₁ = ' + m1 + ' capitalizaciones/año)</div>'
     );
@@ -163,10 +162,9 @@
     if (!Number.isFinite(ea)) return fail('Resultado fuera de rango al calcular EA.', 'result-tasas');
 
     stepsArr.push(
-      '<strong>Paso ' + (stepsArr.length) + ': Calcular la Efectiva Anual (EA Pivote)</strong><br>' +
+      '<strong>Paso ' + (stepsArr.length) + ': Calcular la Efectiva Anual </strong><br>' +
       'Fórmula: $EA = (1 + i_{v1})^{m_1} - 1$<br>' +
-      '$$EA = (1 + ' + fmt(i_v1, 6) + ')^{' + m1 + '} - 1 = ' + fmt(ea * 100, 4) + '\\%$$' +
-      '<div class="alert alert-warning py-1 px-2 d-inline-block mt-1 mb-0 small"><strong>EA Pivote:</strong> ' + fmt(ea * 100, 4) + '%</div>'
+      '$$EA = (1 + ' + fmt(i_v1, 6) + ')^{' + m1 + '} - 1 = ' + fmt(ea * 100, 4) + '\\%$$'
     );
 
     // ── Paso 3/4: De EA a periódica vencida destino (i_v2)

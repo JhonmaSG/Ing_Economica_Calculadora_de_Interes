@@ -14,7 +14,8 @@
 </head>
 
 <body>
-    <iframe class="nav-frame" src="templates/nav.html" title="Navegación principal" scrolling="no" ></iframe><script>window.addEventListener("message",function(event){if(!event.data||event.data.type!=="nav-toggle")return;var frame=document.querySelector(".nav-frame");if(frame)frame.style.height=event.data.open?"300px":"72px";});</script>
+    <iframe class="nav-frame" src="templates/nav.html" title="Navegación principal" scrolling="no"></iframe>
+    <script>window.addEventListener("message", function (event) { if (!event.data || event.data.type !== "nav-toggle") return; var frame = document.querySelector(".nav-frame"); if (frame) frame.style.height = event.data.open ? "300px" : "72px"; });</script>
     <header class="page-header">
         <div class="container">
             <h2>Anualidades</h2>
@@ -76,7 +77,7 @@
             </section>
             <section class="col-lg-7">
                 <div class="calc-card h-100">
-                    <h5>Procedimiento</h5>
+                    <h4>Procedimiento</h4>
                     <div id="steps-anualidad" class="steps mt-3"></div>
                     <div class="chart-box mt-4"><canvas id="chart-anualidad" height="180"></canvas></div>
                 </div>
