@@ -25,7 +25,7 @@
     var rows = [];
     var saldo = VP;
 
-    if (sistema === 'alemán') {
+    if (sistema === 'aleman') {
       // Sistema Alemán — abono a capital constante
       var abonoK = VP / n;
       for (var t = 1; t <= n; t++) {

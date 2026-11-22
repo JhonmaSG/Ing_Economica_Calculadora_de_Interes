@@ -1,10 +1,10 @@
-/*
- * This file has been split into modular JS files:
- *   js/core.js         — Shared utilities
- *   js/interes.js      — Módulo 1: Interés Compuesto
- *   js/tasas.js        — Módulo 2: Equivalencia de Tasas
- *   js/anualidades.js  — Módulo 3: Anualidades
- *   js/credito.js      — Módulo 4: Crédito y Proyección
- *
- * This file is intentionally empty to avoid breaking old links.
- */
+/* Punto de entrada de la página principal.
+   Los cálculos viven en módulos independientes dentro de js/. */
+document.addEventListener('DOMContentLoaded', function () {
+  if (typeof renderMathInElement === 'function') {
+    renderMathInElement(document.body, {
+      delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+      throwOnError: false
+    });
+  }
+});
