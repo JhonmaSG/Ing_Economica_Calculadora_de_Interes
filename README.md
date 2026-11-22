@@ -12,6 +12,11 @@ Herramienta educativa para resolver ejercicios de Ingeniería Económica con fó
 
 Los tipos relacionados se agrupan dentro de un módulo para evitar duplicar pantallas y fórmulas. La perpetuidad y la capitalización para alcanzar una meta no forman parte del flujo principal de esta versión.
 
+
+## Alcance académico
+
+Los resultados deben interpretarse como apoyo al estudio. La calculadora trabaja con períodos regulares y no considera seguros, comisiones, impuestos, fechas calendario ni tasas variables.
+
 ## Tecnologías
 
 - HTML5, CSS3 y JavaScript vanilla.
@@ -21,15 +26,3 @@ Los tipos relacionados se agrupan dentro de un módulo para evitar duplicar pant
 - GitHub Pages para publicación.
 
 La aplicación es estática: los cálculos se realizan en el navegador y no se envían datos a un servidor.
-
-## Ejecución
-
-Abre `index.html` en un navegador o publica el contenido mediante GitHub Pages. Las librerías visuales se cargan desde CDN, por lo que se requiere conexión a Internet para ver estilos, fórmulas y gráficas.
-
-## Rama de trabajo
-
-La optimización se desarrolla en `feature/optmización-modulos`, creada a partir de `main`.
-
-## Alcance académico
-
-Los resultados deben interpretarse como apoyo al estudio. La calculadora trabaja con períodos regulares y no considera seguros, comisiones, impuestos, fechas calendario ni tasas variables.
