@@ -2,6 +2,9 @@
 
 Herramienta educativa para resolver ejercicios de Ingeniería Económica con fórmulas, validaciones y procedimiento paso a paso.
 
+## Acceso al Proyecto
+https://jhonmasg.github.io/Ing_Economica_Calculadora_de_Interes/
+
 ## Módulos
 
 1. **Interés compuesto:** calcula VP, VF, tasa o número de períodos.
