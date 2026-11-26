@@ -28,4 +28,8 @@ Los resultados deben interpretarse como apoyo al estudio. La calculadora trabaja
 - KaTeX 0.16.11 para fórmulas matemáticas.
 - GitHub Pages para publicación.
 
-La aplicación es estática: los cálculos se realizan en el navegador y no se envían datos a un servidor.
+La aplicación es estática: los cálculos se realizan en el navegador y no se envían datos a un servidor. Las librerías de interfaz, fórmulas, iconos y gráficas están incluidas localmente en `vendor/`, por lo que el proyecto puede ejecutarse sin conexión a Internet.
+
+## Ejecución sin Internet
+
+Copia todo el repositorio a la USB y abre `index.html` en un navegador. No elimines la carpeta `vendor/`, porque contiene las versiones locales de Bootstrap, Bootstrap Icons, KaTeX y Chart.js. Las fuentes del sistema se utilizan como respaldo cuando no hay conexión.
